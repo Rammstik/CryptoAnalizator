@@ -21,7 +21,7 @@ public class FileOperations {
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
-                if (CryptoAlphabet.alphabet.contains(letter)) {
+                if (CryptoAlphabet.contains(letter)) {
                     letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) + 3);
                     bufferedWriter.append(letter);
                 } else {
@@ -40,7 +40,7 @@ public class FileOperations {
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
-                if (CryptoAlphabet.alphabet.contains(letter)) {
+                if (CryptoAlphabet.contains(letter)) {
                     letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) - 3);
                     bufferedWriter.append(letter);
                 } else {
