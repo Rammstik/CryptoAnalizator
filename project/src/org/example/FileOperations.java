@@ -1,6 +1,9 @@
 package org.example;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileOperations {
@@ -14,10 +17,10 @@ public class FileOperations {
         return MESSAGE;
     }
 
-    public static void encryption () {
+    public static void caesarEncryption () {
         try (Scanner scanner = new Scanner(System.in);
              BufferedReader bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
-             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("resourses/out-files/result.txt"));){
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("project/resourses/out/result.txt"))){
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
@@ -33,10 +36,10 @@ public class FileOperations {
         }
     }
 
-    public static void decoding () {
+    public static void caesarDecoding () {
         try (Scanner scanner = new Scanner(System.in);
              BufferedReader bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
-             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("resourses/out-files/result.txt"));){
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("project/resourses/out/result.txt"))){
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
@@ -51,5 +54,6 @@ public class FileOperations {
             throw new RuntimeException(e);
         }
     }
+
 
 }

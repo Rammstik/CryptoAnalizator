@@ -30,4 +30,5 @@ public class CryptoAlphabet {
     public static int getIndex(char letter) {
         return alphabet.indexOf(letter);
     }
+
 }
