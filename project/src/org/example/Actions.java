@@ -49,11 +49,11 @@ public class Actions {
             String choise = scanner.nextLine();
             if (choise.equalsIgnoreCase("DECODING")){
                 System.out.println(FileOperations.getMessage());
-                FileOperations.caesarDecoding();
+                FileOperations.caesarDecoding(3);
                 break;
             } else if (choise.equalsIgnoreCase("ENCRYPTION")) {
                 System.out.println(FileOperations.getMessage());
-                FileOperations.caesarEncryption();
+                FileOperations.caesarEncryption(3);
                 break;
             } else {
                 System.out.println("Сделайте верный выбор:");

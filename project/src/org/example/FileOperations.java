@@ -17,7 +17,7 @@ public class FileOperations {
         return MESSAGE;
     }
 
-    public static void caesarEncryption () {
+    public static void caesarEncryption (int step) {
         try (Scanner scanner = new Scanner(System.in);
              BufferedReader bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
              BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("project/resourses/out/result.txt"))){
@@ -25,7 +25,7 @@ public class FileOperations {
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
                 if (CryptoAlphabet.contains(letter)) {
-                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) + 3);
+                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) + step);
                     bufferedWriter.append(letter);
                 } else {
                     bufferedWriter.append(letter);
@@ -36,7 +36,7 @@ public class FileOperations {
         }
     }
 
-    public static void caesarDecoding () {
+    public static void caesarDecoding (int step) {
         try (Scanner scanner = new Scanner(System.in);
              BufferedReader bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
              BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("project/resourses/out/result.txt"))){
@@ -44,7 +44,7 @@ public class FileOperations {
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
                 if (CryptoAlphabet.contains(letter)) {
-                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) - 3);
+                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) - step);
                     bufferedWriter.append(letter);
                 } else {
                     bufferedWriter.append(letter);

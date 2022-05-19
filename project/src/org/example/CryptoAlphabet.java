@@ -31,4 +31,8 @@ public class CryptoAlphabet {
         return alphabet.indexOf(letter);
     }
 
+    public static int size() {
+        return alphabet.size();
+    }
+
 }
