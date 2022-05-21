@@ -3,13 +3,13 @@ package org.example;
 import java.util.Scanner;
 
 public class Actions {
-    private static final String startMessage = """
+    private static final String STARTMESSAGE = """
             Выберите необходимое действие с файлом.
             Для шифровки / расшифровки методом Цезаря наберите: CAESAR
             Для расшифровки методом brute force наберите: BRUTEFORCE
             Ожидание ввода (регистр не важен):\040""";
 
-    private static final String caesarMessage = """
+    private static final String CAESARMESSAGE = """
             Для расшифровки файла методом Цезаря наберите: DECODING
             Для зашифровки файла методом Цезаря наберите: ENCRYPTION
             Ожидание ввода (регистр не важен):\040""";
@@ -18,11 +18,11 @@ public class Actions {
     }
 
     public static String getCaesarMessage() {
-        return caesarMessage;
+        return CAESARMESSAGE;
     }
 
     public static String getStartMessage() {
-        return startMessage;
+        return STARTMESSAGE;
     }
 
     public static void startAction() {
@@ -49,11 +49,11 @@ public class Actions {
             String choise = scanner.nextLine();
             if (choise.equalsIgnoreCase("DECODING")){
                 System.out.println(FileOperations.getMessage());
-                FileOperations.caesarDecoding(3);
+                FileOperations.caesarDecoding(5);
                 break;
             } else if (choise.equalsIgnoreCase("ENCRYPTION")) {
                 System.out.println(FileOperations.getMessage());
-                FileOperations.caesarEncryption(3);
+                FileOperations.caesarEncryption(5);
                 break;
             } else {
                 System.out.println("Сделайте верный выбор:");
