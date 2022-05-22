@@ -1,17 +1,14 @@
 package org.example;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
 import java.util.Scanner;
 
-public class FileOperations {
+public class CaesarCrypto {
 
     private static final String MESSAGE = "Введите путь к текстовому файлу в формате: \"C:\\Users\\...\\test.txt\" \n Путь: ";
 
 
-    private FileOperations() {
+    private CaesarCrypto() {
     }
     public static String getMessage() {
         return MESSAGE;

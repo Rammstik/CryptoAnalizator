@@ -28,8 +28,8 @@ public class BruteForce {
         }
         int maxStep = CryptoAlphabet.size() - 1;
         int step = 1;
-        for (int i = step; i <= maxStep;) {
-            String decodingText = getSymbolsFromFile(step, path);
+        for (int i = maxStep; i >= 1; i--, maxStep--) {
+            String decodingText = getSymbolsFromFile(i, path);
             int correctWordCounter = 0;
             String[] textArray = decodingText.split(" ");
             for (String word : textArray) {
@@ -39,11 +39,9 @@ public class BruteForce {
             }
             if (correctWordCounter > textArray.length/2) {
                 break;
-            } else {
-                step++;
             }
         }
-        return step;
+        return maxStep;
     }
 
     public static String getSymbolsFromFile(int stepDecoding, String path) {

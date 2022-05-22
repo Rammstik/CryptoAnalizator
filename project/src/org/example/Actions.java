@@ -34,7 +34,7 @@ public class Actions {
                 actionCaesarChoise();
                 break;
             } else if (choise.equalsIgnoreCase("BRUTEFORCE")) {
-                System.out.println(FileOperations.getMessage());
+                System.out.println(CaesarCrypto.getMessage());
                 BruteForce.bruteForceDecoding();
                 break;
             } else {
@@ -48,12 +48,12 @@ public class Actions {
         while (true) {
             String choise = scanner.nextLine();
             if (choise.equalsIgnoreCase("DECODING")){
-                System.out.println(FileOperations.getMessage());
-                FileOperations.caesarDecoding(5);
+                System.out.println(CaesarCrypto.getMessage());
+                CaesarCrypto.caesarDecoding(5);
                 break;
             } else if (choise.equalsIgnoreCase("ENCRYPTION")) {
-                System.out.println(FileOperations.getMessage());
-                FileOperations.caesarEncryption(5);
+                System.out.println(CaesarCrypto.getMessage());
+                CaesarCrypto.caesarEncryption(5);
                 break;
             } else {
                 System.out.println("Сделайте верный выбор:");
