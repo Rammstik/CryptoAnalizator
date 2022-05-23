@@ -21,12 +21,7 @@ public class CaesarCrypto {
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
-                if (CryptoAlphabet.contains(letter)) {
-                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) + step);
-                    bufferedWriter.append(letter);
-                } else {
-                    bufferedWriter.append(letter);
-                }
+                bufferedWriter.append(LettersShift.newLetterEncrypt(step, letter));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -40,12 +35,7 @@ public class CaesarCrypto {
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
-                if (CryptoAlphabet.contains(letter)) {
-                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) - step);
-                    bufferedWriter.append(letter);
-                } else {
-                    bufferedWriter.append(letter);
-                }
+                bufferedWriter.append(LettersShift.newLetterDecrypt(step, letter));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

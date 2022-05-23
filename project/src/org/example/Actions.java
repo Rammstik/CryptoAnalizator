@@ -14,6 +14,7 @@ public class Actions {
             Для зашифровки файла методом Цезаря наберите: ENCRYPTION
             Ожидание ввода (регистр не важен):\040""";
 
+    private static final String STEPFORCAESAR = "Введите необходиый шаг шифровки/дешифровки (от 1 до 73): ";
     private Actions() {
     }
 
@@ -48,17 +49,24 @@ public class Actions {
         while (true) {
             String choise = scanner.nextLine();
             if (choise.equalsIgnoreCase("DECODING")){
+                int step = stepForCaesar(scanner);
                 System.out.println(CaesarCrypto.getMessage());
-                CaesarCrypto.caesarDecoding(5);
+                CaesarCrypto.caesarDecoding(step);
                 break;
             } else if (choise.equalsIgnoreCase("ENCRYPTION")) {
+                int step = stepForCaesar(scanner);
                 System.out.println(CaesarCrypto.getMessage());
-                CaesarCrypto.caesarEncryption(5);
+                CaesarCrypto.caesarEncryption(step);
                 break;
             } else {
                 System.out.println("Сделайте верный выбор:");
             }
         }
+    }
+
+    static int stepForCaesar (Scanner scanner) {
+        System.out.println(STEPFORCAESAR);
+        return scanner.nextInt();
     }
 
 

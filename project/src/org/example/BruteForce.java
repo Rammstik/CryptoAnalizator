@@ -19,29 +19,16 @@ public class BruteForce {
     }
 
     private static int stepSelection(String path) {
-        Path russianWords = Path.of("project/resourses/in/russian-words.txt");
-        List<String> words = null;
-        try {
-            words = Files.readAllLines(russianWords);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        int maxStep = CryptoAlphabet.size() - 1;
-        int step = 1;
-        for (int i = maxStep; i >= 1; i--, maxStep--) {
+        List<String> words = vocabulary();
+        int Step = CryptoAlphabet.size() - 1;
+        for (int i = Step; i >= 1; i--, Step--) {
             String decodingText = getSymbolsFromFile(i, path);
-            int correctWordCounter = 0;
-            String[] textArray = decodingText.split(" ");
-            for (String word : textArray) {
-                if (words.contains(word)) {
-                    correctWordCounter++;
-                }
-            }
-            if (correctWordCounter > textArray.length/2) {
+            int correctWordCounter = correctWordsCounter(words, decodingText);
+            if (correctWordCounter > decodingText.split(" ").length/2) {
                 break;
             }
         }
-        return maxStep;
+        return Step;
     }
 
     public static String getSymbolsFromFile(int stepDecoding, String path) {
@@ -50,16 +37,11 @@ public class BruteForce {
             for (int i = 0; i < 100; i++) {
                 if (bufferedReader.ready()) {
                     char letter = (char) bufferedReader.read();
-                    if (CryptoAlphabet.contains(letter)) {
-                        letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) + stepDecoding);
-                        stringBuilder.append(letter);
-                    }
-                } else {
-                    break;
+                    stringBuilder.append(LettersShift.newLetterDecrypt(stepDecoding, letter));
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
         return stringBuilder.toString();
     }
@@ -69,15 +51,31 @@ public class BruteForce {
 
             while (bufferedReader.ready()) {
                 char letter = (char) bufferedReader.read();
-                if (CryptoAlphabet.contains(letter)) {
-                    letter = CryptoAlphabet.getLetter(CryptoAlphabet.getIndex(letter) + step);
-                    bufferedWriter.append(letter);
-                } else {
-                    bufferedWriter.append(letter);
-                }
+                bufferedWriter.append(LettersShift.newLetterDecrypt(step, letter));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private static List<String> vocabulary() {
+        Path russianWords = Path.of("project/resourses/in/russian-words.txt");
+        List<String> words = null;
+        try {
+            words = Files.readAllLines(russianWords);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return words;
+    }
+
+    private static int correctWordsCounter(List<String> list, String decodingText) {
+        String[] textArray = decodingText.split(" ");
+        int correctWordCounter = 0;
+        for (String word : textArray) {
+            if (list.contains(word)) {
+                correctWordCounter++;
+            }
+        }
+        return correctWordCounter;
     }
 }
