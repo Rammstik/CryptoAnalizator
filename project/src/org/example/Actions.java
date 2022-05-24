@@ -3,69 +3,47 @@ package org.example;
 import java.util.Scanner;
 
 public class Actions {
-    private static final String STARTMESSAGE = """
-            Выберите необходимое действие с файлом.
-            Для шифровки / расшифровки методом Цезаря наберите: CAESAR
-            Для расшифровки методом brute force наберите: BRUTEFORCE
-            Ожидание ввода (регистр не важен):\040""";
 
-    private static final String CAESARMESSAGE = """
-            Для расшифровки файла методом Цезаря наберите: DECODING
-            Для зашифровки файла методом Цезаря наберите: ENCRYPTION
-            Ожидание ввода (регистр не важен):\040""";
-
-    private static final String STEPFORCAESAR = "Введите необходиый шаг шифровки/дешифровки (от 1 до 73): ";
-    private Actions() {
-    }
-
-    public static String getCaesarMessage() {
-        return CAESARMESSAGE;
-    }
-
-    public static String getStartMessage() {
-        return STARTMESSAGE;
-    }
-
-    public static void startAction() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String choise = scanner.nextLine();
-            if (choise.equalsIgnoreCase("CAESAR")) {
-                System.out.println(getCaesarMessage());
-                actionCaesarChoise();
-                break;
-            } else if (choise.equalsIgnoreCase("BRUTEFORCE")) {
-                System.out.println(CaesarCrypto.getMessage());
+    public static void startAction(Scanner scanner) {
+        String choise = scanner.nextLine();
+        switch (Answers.checkingAnswers(choise)) {
+            case CAESAR -> {
+                System.out.println(MessagesForUsers.getCaesarMessage());
+                actionCaesarChoise(scanner);
+            }
+            case BRUTEFORCE -> {
+                System.out.println(MessagesForUsers.getPathMessage());
                 BruteForce.bruteForceDecoding();
-                break;
-            } else {
+            }
+            default -> {
                 System.out.println("Сделайте верный выбор:");
+                startAction(scanner);
             }
         }
     }
 
-    public static void actionCaesarChoise() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String choise = scanner.nextLine();
-            if (choise.equalsIgnoreCase("DECODING")){
+    public static void actionCaesarChoise(Scanner scanner) {
+        String choise = scanner.nextLine();
+        switch (Answers.checkingAnswers(choise)) {
+            case ENCRYPTION -> {
                 int step = stepForCaesar(scanner);
-                System.out.println(CaesarCrypto.getMessage());
-                CaesarCrypto.caesarDecoding(step);
-                break;
-            } else if (choise.equalsIgnoreCase("ENCRYPTION")) {
-                int step = stepForCaesar(scanner);
-                System.out.println(CaesarCrypto.getMessage());
+                System.out.println(MessagesForUsers.getPathMessage());
                 CaesarCrypto.caesarEncryption(step);
-                break;
-            } else {
+            }
+            case DECODING -> {
+                int step = stepForCaesar(scanner);
+                System.out.println(MessagesForUsers.getPathMessage());
+                CaesarCrypto.caesarDecoding(step);
+            }
+            default -> {
                 System.out.println("Сделайте верный выбор:");
+                actionCaesarChoise(scanner);
             }
         }
     }
 
     static int stepForCaesar (Scanner scanner) {
-        System.out.println(STEPFORCAESAR);
+        System.out.println(MessagesForUsers.getStepForCaesarMessage());
         return scanner.nextInt();
     }
 

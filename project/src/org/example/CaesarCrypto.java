@@ -5,13 +5,7 @@ import java.util.Scanner;
 
 public class CaesarCrypto {
 
-    private static final String MESSAGE = "Введите путь к текстовому файлу в формате: \"C:\\Users\\...\\test.txt\" \n Путь: ";
-
-
     private CaesarCrypto() {
-    }
-    public static String getMessage() {
-        return MESSAGE;
     }
 
     public static void caesarEncryption (int step) {

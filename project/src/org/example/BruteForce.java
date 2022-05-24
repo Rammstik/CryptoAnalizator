@@ -20,15 +20,15 @@ public class BruteForce {
 
     private static int stepSelection(String path) {
         List<String> words = vocabulary();
-        int Step = CryptoAlphabet.size() - 1;
-        for (int i = Step; i >= 1; i--, Step--) {
+        int step = CryptoAlphabet.size() - 1;
+        for (int i = step; i >= 1; i--, step--) {
             String decodingText = getSymbolsFromFile(i, path);
             int correctWordCounter = correctWordsCounter(words, decodingText);
             if (correctWordCounter > decodingText.split(" ").length/2) {
                 break;
             }
         }
-        return Step;
+        return step;
     }
 
     public static String getSymbolsFromFile(int stepDecoding, String path) {
